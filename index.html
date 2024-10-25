@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصطفى</title>
+    <link rel="stylesheet" href="mak.css">
+    <style>
+        /* تعريف الأنماط للصفحة */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            border-radius: 20px;
+            margin: 10px;
+            height: 200px; /* ارتفاع الزر */
+            width: 150px; /* عرض الزر */
+            background-color: #fff;
+            transition: .3s all ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            background-color: rgb(207, 207, 207);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .service-logo {
+            width: 60px; /* عرض الشعار */
+            height: 60px; /* ارتفاع الشعار */
+            border-radius: 50%; /* شكل دائري */
+        }
+
+        .close-btn {
+            margin: 10px;
+            padding: 5px 10px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute; /* لجعل الزر في الزاوية */
+            top: 10px;
+            right: 10px;
+        }
+
+        /* أنماط الشريط العلوي */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0073b1;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo img {
+            width: 30px; /* حجم الشعار */
+            height: 30px; /* حجم الشعار */
+            margin-right: 10px; /* مسافة بين الشعار وكلمة "المصطفى" */
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .bar {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0; /* إخفاء الخط الأوسط */
+        }
+
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -250px; /* تعديل موضع القائمة */
+            width: 250px;
+            height: 100%;
+            background-color: #005c96;
+            transition: right 0.3s ease;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .side-menu.open {
+            right: 0; /* ظهور القائمة عند فتحها */
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 70px; /* مكان الشريط العلوي */
+        }
+
+        .side-menu ul li {
+            margin: 20px 0;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="mak0.png" alt="شعار" /> <!-- ضع مسار الشعار هنا -->
+            <span class="center-text">المصطفى</span>
+        </div>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+
+    <!-- النافذة الجانبية -->
+    <div class="side-menu" id="sideMenu">
+        <ul>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#" onclick="showServices()">الخدمات وأسعارها</a></li>
+            <li><a href="#">رصيدي</a></li>
+            <li><a href="#">طلب وكيل</a></li>
+            <li><a href="#">تسجيل دخول</a></li>
+            <li><a href="#">تسجيل حساب</a></li>
+            <li><a href="#">من نحن</a></li>
+        </ul>
+    </div>
+
+    <!-- صفحة الخدمات (مخفية في البداية) -->
+    <div class="services-page" id="servicesPage" style="display: none;">
+        <button class="close-btn" onclick="closeServices()">X</button>
+        <div class="container">
+            <div class="card">
+                <img src="logo1.png" alt="شعار خدمة 1" class="service-logo">
+            </div>
+            <div class="card">
+                <img src="logo2.png" alt="شعار خدمة 2" class="service-logo">
+            </div>
+            <div class="card">
+                <img src="logo3.png" alt="شعار خدمة 3" class="service-logo">
+            </div>
+            <div class="card">
+                <img src="logo4.png" alt="شعار خدمة 4" class="service-logo">
+            </div>
+            <div class="card">
+                <img src="logo5.png" alt="شعار خدمة 5" class="service-logo">
+            </div>
+            <div class="card">
+                <img src="logo6.png" alt="شعار خدمة 6" class="service-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- ربط ملف الجافا سكربت الخارجي -->
+    <script src="mak2.js"></script>
+    <script>
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const menuToggle = document.getElementById('menuToggle');
+            sideMenu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        }
+
+        function showServices() {
+            document.getElementById('servicesPage').style.display = 'block';
+            document.getElementById('sideMenu').classList.remove('open');
+        }
+
+        function closeServices() {
+            document.getElementById('servicesPage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
