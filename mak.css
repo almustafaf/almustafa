@@ -1,0 +1,151 @@
+/* تعريف المتغيرات */
+:root {
+    --primary-color: #0073b1;
+    --secondary-color: #005c96;
+    --accent-color: #ffdd00;
+    --text-color: white;
+    --font-family: 'Arial', sans-serif;
+    --navbar-height: 60px;
+    --menu-width: 250px;
+}
+
+/* ضبط عرض الموقع على شاشات الهواتف */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow-x: hidden; /* إخفاء أي تمرير أفقي */
+}
+
+/* الشريط العلوي */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    z-index: 1000;
+}
+
+/* الشعار */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color); /* استخدام لون أصفر غامق */
+}
+
+/* أيقونة الخطوط الثلاث */
+.menu-toggle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+}
+
+.bar {
+    width: 100%;
+    height: 4px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* النافذة الجانبية */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: calc(-1 * var(--menu-width));
+    width: var(--menu-width);
+    height: 100%;
+    background-color: var(--secondary-color);
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 999; /* جعل القائمة الجانبية فوق كل شيء */
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: calc(var(--navbar-height) + 10px);
+}
+
+.side-menu ul li {
+    margin: 20px 0;
+}
+
+.side-menu ul li a {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* تنسيق أزرار الخدمات */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* يسمح بتوزيع العناصر في صفوف متعددة */
+    justify-content: space-around; /* توزيع المسافات بين العناصر */
+    padding: 20px; /* إضافة حشوة */
+}
+
+.card {
+    width: 100px; /* عرض الزر */
+    height: 100px; /* ارتفاع الزر */
+    border-radius: 10px; /* الزوايا المستديرة للزر */
+    background-color: #fff;
+    margin: 10px; /* إضافة مسافة بين الأزرار */
+    display: flex; /* لجعل الصورة في المركز */
+    justify-content: center; /* توسيط العناصر أفقياً */
+    align-items: center; /* توسيط العناصر عمودياً */
+    cursor: pointer; /* تغيير شكل المؤشر عند المرور */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    transition: box-shadow 0.3s ease; /* إضافة انتقال سلس للظل */
+}
+
+/* عدم تغيير حجم الزر عند الضغط عليه */
+.card:active {
+    transform: none; /* عدم تغيير الحجم */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* إضافة ظل أكبر عند المرور */
+}
+
+/* تنسيق شعارات الخدمات */
+.service-logo {
+    width: 60px; /* عرض الشعار */
+    height: 60px; /* ارتفاع الشعار */
+    border-radius: 50%; /* شكل دائري */
+}
